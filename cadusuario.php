@@ -24,13 +24,13 @@ $nmUsuario    = trim($jsonParam['nmUsuario'] ?? '');
 $deEmail      = trim($jsonParam['deEmail'] ?? '');
 $deSenha      = trim($jsonParam['deSenha'] ?? '');
 $cdSexo       = intval($jsonParam['cdSexo'] ?? 0);
-$cdTipo       = intval($jsonParam['cdTipo'] ?? 0);
+$idPerfil     = intval($jsonParam['idPerfil'] ?? 0);
 $dtNascimento = !empty($jsonParam['dtNascimento']) ? date('Y-m-d', strtotime($jsonParam['dtNascimento'])) : null;
 $opTermo      = !empty($jsonParam['opTermo']) ? 1 : 0;
 
 // Prepare and bind
 $stmt = $con->prepare("
-    INSERT INTO Usuario (nmUsuario, deEmail, deSenha, cdSexo, cdTipo, dtNascimento, opTermo)
+    INSERT INTO Usuario (nmUsuario, deEmail, deSenha, cdSexo, idPerfil, dtNascimento, opTermo)
     VALUES (?, ?, ?, ?, ?, ?, ?)
 ");
 
@@ -39,7 +39,7 @@ if (!$stmt) {
     exit;
 }
 
-$stmt->bind_param("sssiisi", $nmUsuario, $deEmail, $deSenha, $cdSexo, $cdTipo, $dtNascimento, $opTermo);
+$stmt->bind_param("sssiisi", $nmUsuario, $deEmail, $deSenha, $cdSexo, $idPerfil, $dtNascimento, $opTermo);
 
 // Execute and return result
 if ($stmt->execute()) {

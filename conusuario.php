@@ -11,8 +11,8 @@ $con->set_charset("utf8");
 // Decode JSON input (but ignore its contents)
 json_decode(file_get_contents('php://input'), true);
 
-// New SQL: no WHERE clause
-$sql = "SELECT idUsuario, nmUsuario, deEmail, deSenha, cdSexo, cdTipo, dtNascimento, opTermo FROM Usuario";
+// SQL
+$sql = "SELECT idUsuario, nmUsuario, deEmail, deSenha, cdSexo, idPerfil, dtNascimento, opTermo FROM Usuario";
 
 $result = $con->query($sql);
 
@@ -29,7 +29,7 @@ if ($result && $result->num_rows > 0) {
         "deEmail" => "",
         "deSenha" => "",
         "cdSexo" => 0,
-        "cdTipo" => 0,
+        "idPerfil" => 0,
         "dtNascimento" => "",
         "opTermo" => false
     ];
